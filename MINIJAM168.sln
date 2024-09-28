@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MINIJAM168", "MINIJAM168.csproj", "{D69D32AB-6B29-40BF-84A1-977222CE8C97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D69D32AB-6B29-40BF-84A1-977222CE8C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69D32AB-6B29-40BF-84A1-977222CE8C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69D32AB-6B29-40BF-84A1-977222CE8C97}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{D69D32AB-6B29-40BF-84A1-977222CE8C97}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{D69D32AB-6B29-40BF-84A1-977222CE8C97}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{D69D32AB-6B29-40BF-84A1-977222CE8C97}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

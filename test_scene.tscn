@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1i7iqdd408cf"]
+
+[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
+[ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
+[ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q1ow"]
+shader = ExtResource("1_rdbom")
+shader_parameter/pixel_size = 3.0
+shader_parameter/horizontal_pixel_resolution = 1.0
+shader_parameter/curvature = 2.0
+shader_parameter/color_resolution = 2.0
+shader_parameter/brightness = 0.0
+shader_parameter/space = 1.33
+shader_parameter/_offset = 2.21
+shader_parameter/three_channels = true
+
+[sub_resource type="Gradient" id="Gradient_tjjvh"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_58lug"]
+gradient = SubResource("Gradient_tjjvh")
+width = 1
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PostProcessingLayer" type="CanvasLayer" parent="Camera2D"]
+layer = 128
+
+[node name="CRT Shader" type="ColorRect" parent="Camera2D/PostProcessingLayer"]
+material = SubResource("ShaderMaterial_7q1ow")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Defender" type="Sprite2D" parent="."]
+position = Vector2(60, 900)
+scale = Vector2(64, 64)
+texture = SubResource("GradientTexture1D_58lug")
+script = ExtResource("3_07nm3")
+
+[node name="InvaderPopulater" type="Node2D" parent="."]
+script = ExtResource("5_11era")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0cxqhcvh2me7"]
+
+[ext_resource type="Script" path="res://Invader.cs" id="2_sk145"]
+
+[sub_resource type="Gradient" id="Gradient_mv4i1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gtg28"]
+gradient = SubResource("Gradient_mv4i1")
+width = 1
+
+[node name="Invader" type="Sprite2D"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(60, 60)
+scale = Vector2(64, 64)
+texture = SubResource("GradientTexture1D_gtg28")
+script = ExtResource("2_sk145")

@@ -12,13 +12,14 @@ shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4smdy"]
 size = Vector2(32, 32)
 
-[node name="Bunker" type="Sprite2D"]
+[node name="Bunker" type="Sprite2D" node_paths=PackedStringArray("impactSoundPlayer")]
 texture_filter = 1
 material = SubResource("ShaderMaterial_xaco1")
 position = Vector2(128, 768)
 scale = Vector2(2, 2)
 texture = ExtResource("2_iotgg")
 script = ExtResource("3_aym3s")
+impactSoundPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 

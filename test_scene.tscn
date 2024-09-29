@@ -41,7 +41,7 @@ shader_parameter/_offset = 1.655
 shader_parameter/three_channels = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
-size = Vector2(32, 32)
+size = Vector2(5.5, 7.8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
 shader = ExtResource("4_r36f3")
@@ -90,6 +90,8 @@ script = ExtResource("3_07nm3")
 [node name="Area2D" type="Area2D" parent="Defender"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Area2D"]
+position = Vector2(-0.0499992, 0.200005)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yrpoj")
 
 [node name="InvaderPopulater" type="Node2D" parent="."]

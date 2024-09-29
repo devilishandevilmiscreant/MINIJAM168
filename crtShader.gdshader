@@ -9,13 +9,41 @@ uniform float space = 1.33;
 uniform float _offset = 2.21;
 uniform bool three_channels = true;
 
-vec2 pixelize(vec2 uv, vec2 pixelSize) {
+float gray(vec3 vector) {
+	return (vector.r+vector.g+vector.b)/3.0;
+}
+
+vec3 pixelize(vec2 uv, vec2 pixelSize) {
+	vec3 color = vec3(0);
 	uv *= pixelSize;
-	//uv.x *= horizontal_pixel_resolution;
 	uv = ceil(uv);
-	//uv.x /= horizontal_pixel_resolution;
 	uv /= pixelSize;
-	return uv;//clamp(uv, vec2(0.0), vec2(1.0));
+	
+	color = texture(screen_texture, uv).rgb;
+	
+	const int numDirs = 10;
+	vec2 dirs[numDirs] = {
+		vec2(0, 0.5),
+		vec2(0, 1),
+		vec2(0.25, 0.5),
+		vec2(0.5,0),
+		vec2(0.5,0.5),
+		vec2(0.5,1),
+		vec2(0.75, 0.5),
+		vec2(1,0),
+		vec2(1,0.5),
+		vec2(1,1)
+	};
+	for (int i = 0; i < numDirs; i++) {
+		if (gray(texture(screen_texture, uv - dirs[i]/pixelSize).rgb) < 0.9) continue;
+		color = max(color, texture(screen_texture, uv - dirs[i]/pixelSize).rgb);
+		//if (gray(texture(screen_texture, uv - dirs[i]/pixelSize).rgb) > gray(color))
+		//max means that red bleeds
+		//color += texture(screen_texture, uv - dirs[i]/pixelSize).rgb;
+	}
+	//color /= float(numDirs);
+	
+	return color;
 }
 vec2 curveRemap(vec2 uv, vec2 curve) {
 	curve = vec2(pow(2.0, curve.x));
@@ -39,17 +67,12 @@ vec3 chunk3(vec3 color, float color_res) {
 	return vec3(chunk(color.r, color_res), chunk(color.g, color_res), chunk(color.b, color_res));
 }
 
-float gray(vec3 vector) {
-	return (vector.r+vector.g+vector.b)/3.0;
-}
-
 void fragment() {
 	vec3 color = vec3(1);
 	vec2 uv_warp = curveRemap(SCREEN_UV, vec2(curvature * SCREEN_PIXEL_SIZE.x/SCREEN_PIXEL_SIZE.y, curvature));
-	vec2 uv_pix = pixelize(uv_warp, 1.0/SCREEN_PIXEL_SIZE/pow(2.0, pixel_size));
-	color = texture(screen_texture, uv_pix).rgb;
+	color = pixelize(uv_warp, 1.0/SCREEN_PIXEL_SIZE/pow(2.0, pixel_size)).rgb;
 
-	float shadows = gray(texture(screen_texture, uv_pix).rgb);
+	float shadows = gray(color);
 	color /= shadows;//remove shadows
 	color = clamp(color, vec3(0.0), vec3(1.0));
 	color = chunk3(color, color_resolution);
@@ -63,7 +86,11 @@ void fragment() {
 		for (int i = 0; i < 3; i++) {
 				//sin based channels
 			float scanMask = (cos((uv_warp - vec2((float(i)/3.0 + _offset)/xpixelSize, 0.0)) * TAU * horizontal_pixel_resolution * xpixelSize)*3.0 - 2.0).x;
-			scanMask *= abs(sin(uv_warp * PI * 1.0/SCREEN_PIXEL_SIZE/pow(2.0, pixel_size))).y*channels[i];//opacity based brightness
+			scanMask *= smoothstep(0.0, 0.15, fract(uv_warp.y * 1.0/SCREEN_PIXEL_SIZE.y/pow(2.0, pixel_size)));
+			scanMask *= smoothstep(1.0, 0.85, fract(uv_warp.y * 1.0/SCREEN_PIXEL_SIZE.y/pow(2.0, pixel_size)));
+			scanMask *= channels[i];
+			//float a = 0.5;
+			//scanMask *= (abs(sin(uv_warp * PI * 1.0/SCREEN_PIXEL_SIZE/pow(2.0, pixel_size))).y + a)*channels[i];//opacity based brightness
 			//float value = 0.5/channels[i];//size based brightness
 			//scanMask *= max(cos((uv_warp - vec2(0.0, 0)) * PI * SCREEN_PIXEL_SIZE/pow(2.0, pixel_size)).y*value - value + 1.0, 0.0);
 			scanMask = clamp(scanMask, 0.0, 1.0);

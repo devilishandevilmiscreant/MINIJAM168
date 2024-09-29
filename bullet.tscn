@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfsqkud0enna6"]
+
+[ext_resource type="Script" path="res://Bullet.cs" id="1_tg1sf"]
+
+[sub_resource type="Gradient" id="Gradient_f3b4s"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8cxcn"]
+gradient = SubResource("Gradient_f3b4s")
+width = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai3yd"]
+size = Vector2(1, 1)
+
+[node name="Bullet" type="Sprite2D"]
+scale = Vector2(4, 32)
+texture = SubResource("GradientTexture1D_8cxcn")
+script = ExtResource("1_tg1sf")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ai3yd")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

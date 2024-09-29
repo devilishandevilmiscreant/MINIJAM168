@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://8val6q8asjmh"]
+
+[ext_resource type="Shader" path="res://bunker.gdshader" id="1_thcwt"]
+[ext_resource type="Texture2D" uid="uid://cyni063a3qqrn" path="res://bunker.png" id="2_iotgg"]
+[ext_resource type="Script" path="res://Bunker.cs" id="3_aym3s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaco1"]
+shader = ExtResource("1_thcwt")
+shader_parameter/text = PackedInt32Array()
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4smdy"]
+size = Vector2(32, 32)
+
+[node name="Bunker" type="Sprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xaco1")
+position = Vector2(128, 768)
+scale = Vector2(2, 2)
+texture = ExtResource("2_iotgg")
+script = ExtResource("3_aym3s")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4smdy")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

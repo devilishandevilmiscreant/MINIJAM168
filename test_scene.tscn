@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1i7iqdd408cf"]
+[gd_scene load_steps=14 format=3 uid="uid://d1i7iqdd408cf"]
 
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
 [ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
+[ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="4_epvbt"]
+[ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
 [ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7q1ow"]
 shader = ExtResource("1_rdbom")
-shader_parameter/pixel_size = 3.0
+shader_parameter/pixel_size = 4.0
 shader_parameter/horizontal_pixel_resolution = 1.0
 shader_parameter/curvature = 2.0
 shader_parameter/color_resolution = 2.0
@@ -21,6 +23,25 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_58lug"]
 gradient = SubResource("Gradient_tjjvh")
 width = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
+size = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehs3p"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61v3x"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6f05"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [node name="TestScene" type="Node2D"]
 
@@ -44,5 +65,30 @@ scale = Vector2(64, 64)
 texture = SubResource("GradientTexture1D_58lug")
 script = ExtResource("3_07nm3")
 
+[node name="Area2D" type="Area2D" parent="Defender"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Area2D"]
+shape = SubResource("RectangleShape2D_yrpoj")
+
 [node name="InvaderPopulater" type="Node2D" parent="."]
 script = ExtResource("5_11era")
+
+[node name="Bunker" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_6ol3c")
+position = Vector2(92, 768)
+scale = Vector2(4, 4)
+
+[node name="Bunker2" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_ehs3p")
+position = Vector2(348, 768)
+scale = Vector2(4, 4)
+
+[node name="Bunker3" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_61v3x")
+position = Vector2(604, 768)
+scale = Vector2(4, 4)
+
+[node name="Bunker4" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_l6f05")
+position = Vector2(860, 768)
+scale = Vector2(4, 4)

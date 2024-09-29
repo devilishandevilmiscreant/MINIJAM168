@@ -1,10 +1,30 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1i7iqdd408cf"]
+[gd_scene load_steps=17 format=3 uid="uid://d1i7iqdd408cf"]
 
+[ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
 [ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
-[ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="4_epvbt"]
+[ext_resource type="PackedScene" uid="uid://bdxkdef10esd2" path="res://bunker.tscn" id="4_epvbt"]
 [ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
 [ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
+[ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="7_dq85u"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_2aywe"]
+script/source = "using Godot;
+using System;
+
+public partial class MusicPlayer : AudioStreamPlayer2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7q1ow"]
 shader = ExtResource("1_rdbom")
@@ -44,6 +64,7 @@ shader = ExtResource("4_r36f3")
 shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [node name="TestScene" type="Node2D"]
+script = SubResource("CSharpScript_2aywe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -92,3 +113,8 @@ scale = Vector2(4, 4)
 material = SubResource("ShaderMaterial_l6f05")
 position = Vector2(860, 768)
 scale = Vector2(4, 4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_dq85u")
+parameters/looping = true
+script = ExtResource("1_78xd0")

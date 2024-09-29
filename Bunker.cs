@@ -10,6 +10,8 @@ public partial class Bunker : Sprite2D
 		1, 1, 1, 1,
 		1, 1, 1, 1
 	};
+	
+	[Export] private AudioStreamPlayer2D impactSoundPlayer;
 
 	public void _on_area_2d_area_entered(Area2D area) {
 		GD.Print(area);
@@ -25,6 +27,12 @@ public partial class Bunker : Sprite2D
 				if (voxelGrid[gridX + gridY*4] == 1) {
 					voxelGrid[gridX + gridY*4] = 0;  // Mark voxel as destroyed
 					UpdateBunkerSprite();
+					
+					if (impactSoundPlayer != null)
+					{
+						impactSoundPlayer.Play();
+					}
+					
 					area.GetParent().QueueFree();  // Remove the bullet
 					break;
 				} else {

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
-[ext_resource type="Texture2D" uid="uid://54sb60v6dl1l" path="res://assets/sprites/space_defender_mj168.png" id="2_s4f62"]
+[ext_resource type="Texture2D" uid="uid://b511bxl8ji45s" path="res://assets/sprites/4bityellow.png" id="2_ikphf"]
 [ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
 [ext_resource type="Texture2D" uid="uid://c2p8ecyjcenik" path="res://assets/sprites/spr_background_1.png" id="4_6yyke"]
 [ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="4_epvbt"]
@@ -83,8 +83,8 @@ texture = ExtResource("4_6yyke")
 [node name="Defender" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(60, 900)
-scale = Vector2(2, 2)
-texture = ExtResource("2_s4f62")
+scale = Vector2(16, 16)
+texture = ExtResource("2_ikphf")
 script = ExtResource("3_07nm3")
 
 [node name="Area2D" type="Area2D" parent="Defender"]
@@ -117,7 +117,6 @@ scale = Vector2(4, 4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_dq85u")
-parameters/looping = true
 script = ExtResource("1_78xd0")
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]

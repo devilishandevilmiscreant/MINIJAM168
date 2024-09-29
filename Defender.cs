@@ -6,18 +6,27 @@ public partial class Defender : Sprite2D
 	[Export] string BulletScene = "res://bullet.tscn";
 	//The speed at which the defender moves in pixels/second
 	[Export] public float Speed = 200;
+	[Export] public int Interval = 16;//960/2^3/8
 	PackedScene bulletPackedScene;
-	CoolDown canShoot = new(1);
+	CoolDown canShoot = new(0.05f);
 	Vector2 movementDirection = Vector2.Zero;
+	Vector2 desiredPosition;
 
 	public override void _Ready() {
+		desiredPosition = Position;
 		bulletPackedScene = GD.Load<PackedScene>(BulletScene);
 	}
 
 	public override void _Process(double delta) {
-		Position += new Vector2(movementDirection.X * Speed * (float)delta, 0);
-		Position = Position.X > 900 ? new Vector2(900, Position.Y) : Position;
-		Position = Position.X < 60 ? new Vector2(60, Position.Y) : Position;
+		desiredPosition += new Vector2(movementDirection.X * Speed * (float)delta, 0);
+		desiredPosition = desiredPosition.X > 900 ? new Vector2(900, desiredPosition.Y) : desiredPosition;
+		desiredPosition = desiredPosition.X < 60 ? new Vector2(60, desiredPosition.Y) : desiredPosition;
+
+		Position = new Vector2(
+			Mathf.Round(desiredPosition.X / Interval),
+			Mathf.Round(desiredPosition.Y / Interval)
+		);
+		Position *= Interval;
 	}
  
 	public override void _Input(InputEvent @event) {
@@ -35,7 +44,7 @@ public partial class Defender : Sprite2D
 	void spawnBullet() {
 		Bullet b = bulletPackedScene.Instantiate<Bullet>();
 		AddSibling(b);
-		b.GlobalPosition = GlobalPosition + Vector2.Up*32;
+		b.DesiredPosition = GlobalPosition + Vector2.Up*32;
 		b.MovementDirection = Vector2.Up;
 		b.Invader = false;
 	}

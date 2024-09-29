@@ -40,7 +40,7 @@ public partial class InvaderPopulater : Node2D
 				rows++;
 
 			inv.MovementDirection.X = 1 - (rows%2) * 2;//even rows = 1, odd rows = -1
-			inv.Position = new Vector2(Offset.X - inv.MovementDirection.X*20f/(Margin/16f) + (i - widthOfRow * rows) * (invaderSize + Margin), Offset.Y + rows * (invaderSize + Margin));
+			inv.DesiredPosition = new Vector2(Offset.X - inv.MovementDirection.X*20f/(Margin/16f) + (i - widthOfRow * rows) * (invaderSize + Margin), Offset.Y + rows * (invaderSize + Margin));
 			inv.Margin = Margin;
 		}
 	}

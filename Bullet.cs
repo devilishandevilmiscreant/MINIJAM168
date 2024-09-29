@@ -4,7 +4,9 @@ using System;
 public partial class Bullet : Sprite2D
 {
 	[Export] public float Speed = 500;
+	[Export] public int Interval = 16;//960/2^3/8
 	public Vector2 MovementDirection = Vector2.Zero;
+	public Vector2 DesiredPosition;
 	public bool Invader = true;
 
 	// Audio players for laser and explosion sounds
@@ -13,6 +15,7 @@ public partial class Bullet : Sprite2D
 
 	public override void _Ready()
 	{
+		DesiredPosition = Position;
 		// Play the laser sound when the bullet is spawned
 		if (laserSoundPlayer != null)
 		{
@@ -22,10 +25,16 @@ public partial class Bullet : Sprite2D
 
 	public override void _Process(double delta)
 	{
-		Position += MovementDirection * Speed * (float)delta;
+		DesiredPosition += MovementDirection * Speed * (float)delta;
 		base._Process(delta);
-		if (Position.Y > 960 || Position.Y < 0)
+		if (DesiredPosition.Y > 960 || DesiredPosition.Y < 0)
 			QueueFree();
+
+		Position = new Vector2(
+			Mathf.Round(DesiredPosition.X / Interval),
+			Mathf.Round(DesiredPosition.Y / Interval)
+		);
+		Position *= Interval;
 	}
 
 	public void _on_area_2d_area_entered(Area2D area)

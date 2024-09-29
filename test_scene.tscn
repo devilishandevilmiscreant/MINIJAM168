@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1i7iqdd408cf"]
+[gd_scene load_steps=18 format=3 uid="uid://d1i7iqdd408cf"]
 
 [ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
 [ext_resource type="Texture2D" uid="uid://54sb60v6dl1l" path="res://assets/sprites/space_defender_mj168.png" id="2_s4f62"]
 [ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
-[ext_resource type="PackedScene" uid="uid://bdxkdef10esd2" path="res://bunker.tscn" id="4_epvbt"]
+[ext_resource type="Texture2D" uid="uid://c2p8ecyjcenik" path="res://assets/sprites/spr_background_1.png" id="4_6yyke"]
+[ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="4_epvbt"]
 [ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
 [ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
 [ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="7_dq85u"]
@@ -30,17 +31,17 @@ public partial class MusicPlayer : AudioStreamPlayer2D
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7q1ow"]
 shader = ExtResource("1_rdbom")
-shader_parameter/pixel_size = 4.0
+shader_parameter/pixel_size = 3.0
 shader_parameter/horizontal_pixel_resolution = 1.0
 shader_parameter/curvature = 2.0
 shader_parameter/color_resolution = 2.0
-shader_parameter/brightness = 0.0
+shader_parameter/brightness = 1.25
 shader_parameter/space = 1.33
-shader_parameter/_offset = 2.21
+shader_parameter/_offset = 1.655
 shader_parameter/three_channels = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
-size = Vector2(1, 1)
+size = Vector2(32, 32)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
 shader = ExtResource("4_r36f3")
@@ -75,7 +76,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(480, 480)
+texture = ExtResource("4_6yyke")
+
 [node name="Defender" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(60, 900)
 scale = Vector2(2, 2)
 texture = ExtResource("2_s4f62")
@@ -89,29 +95,25 @@ shape = SubResource("RectangleShape2D_yrpoj")
 [node name="InvaderPopulater" type="Node2D" parent="."]
 script = ExtResource("5_11era")
 
-[node name="Bunker" parent="." node_paths=PackedStringArray("impactSoundPlayer") instance=ExtResource("4_epvbt")]
+[node name="Bunker" parent="." instance=ExtResource("4_epvbt")]
 material = SubResource("ShaderMaterial_6ol3c")
 position = Vector2(92, 768)
 scale = Vector2(4, 4)
-impactSoundPlayer = NodePath("../AudioStreamPlayer2D2")
 
-[node name="Bunker2" parent="." node_paths=PackedStringArray("impactSoundPlayer") instance=ExtResource("4_epvbt")]
+[node name="Bunker2" parent="." instance=ExtResource("4_epvbt")]
 material = SubResource("ShaderMaterial_ehs3p")
 position = Vector2(348, 768)
 scale = Vector2(4, 4)
-impactSoundPlayer = NodePath("../AudioStreamPlayer2D2")
 
-[node name="Bunker3" parent="." node_paths=PackedStringArray("impactSoundPlayer") instance=ExtResource("4_epvbt")]
+[node name="Bunker3" parent="." instance=ExtResource("4_epvbt")]
 material = SubResource("ShaderMaterial_61v3x")
 position = Vector2(604, 768)
 scale = Vector2(4, 4)
-impactSoundPlayer = NodePath("../AudioStreamPlayer2D2")
 
-[node name="Bunker4" parent="." node_paths=PackedStringArray("impactSoundPlayer") instance=ExtResource("4_epvbt")]
+[node name="Bunker4" parent="." instance=ExtResource("4_epvbt")]
 material = SubResource("ShaderMaterial_l6f05")
 position = Vector2(860, 768)
 scale = Vector2(4, 4)
-impactSoundPlayer = NodePath("../AudioStreamPlayer2D2")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_dq85u")

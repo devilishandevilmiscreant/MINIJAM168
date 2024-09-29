@@ -1,10 +1,10 @@
 shader_type canvas_item;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
-uniform float pixel_size : hint_range(1, 8, 0.5) = 4;
+uniform float pixel_size : hint_range(1, 8, 0.5) = 3;
 uniform float horizontal_pixel_resolution : hint_range(0, 6, 0.25) = 1.0;
 uniform float curvature : hint_range(-3,3, 0.05) = 1.0;
 uniform float color_resolution : hint_range(1,16,1.0) = 1.0;
-uniform float brightness : hint_range(0,1,0.05) = 0;
+uniform float brightness : hint_range(0,5,0.05) = 0;
 uniform float space = 1.33;
 uniform float _offset = 2.21;
 uniform bool three_channels = true;
@@ -16,32 +16,32 @@ float gray(vec3 vector) {
 vec3 pixelize(vec2 uv, vec2 pixelSize) {
 	vec3 color = vec3(0);
 	uv *= pixelSize;
-	uv = ceil(uv);
+	uv = round(uv);
 	uv /= pixelSize;
 	
 	color = texture(screen_texture, uv).rgb;
 	
-	const int numDirs = 10;
-	vec2 dirs[numDirs] = {
-		vec2(0, 0.5),
-		vec2(0, 1),
-		vec2(0.25, 0.5),
-		vec2(0.5,0),
-		vec2(0.5,0.5),
-		vec2(0.5,1),
-		vec2(0.75, 0.5),
-		vec2(1,0),
-		vec2(1,0.5),
-		vec2(1,1)
-	};
-	for (int i = 0; i < numDirs; i++) {
-		if (gray(texture(screen_texture, uv - dirs[i]/pixelSize).rgb) < 0.9) continue;
-		color = max(color, texture(screen_texture, uv - dirs[i]/pixelSize).rgb);
-		//if (gray(texture(screen_texture, uv - dirs[i]/pixelSize).rgb) > gray(color))
-		//max means that red bleeds
-		//color += texture(screen_texture, uv - dirs[i]/pixelSize).rgb;
-	}
-	//color /= float(numDirs);
+	//const int numDirs = 10;
+	//vec2 dirs[numDirs] = {
+		//vec2(0, 0.5),
+		//vec2(0, 1),
+		//vec2(0.25, 0.5),
+		//vec2(0.5,0),
+		//vec2(0.5,0.5),
+		//vec2(0.5,1),
+		//vec2(0.75, 0.5),
+		//vec2(1,0),
+		//vec2(1,0.5),
+		//vec2(1,1)
+	//};
+	//for (int i = 0; i < numDirs; i++) {
+		//if (gray(texture(screen_texture, uv - dirs[i]/pixelSize).rgb) < 0.9) continue;
+		//color = max(color, texture(screen_texture, uv - dirs[i]/pixelSize).rgb);
+		////if (gray(texture(screen_texture, uv - dirs[i]/pixelSize).rgb) > gray(color))
+		////max means that red bleeds
+		////color += texture(screen_texture, uv - dirs[i]/pixelSize).rgb;
+	//}
+	////color /= float(numDirs);
 	
 	return color;
 }
@@ -77,7 +77,9 @@ void fragment() {
 	color = clamp(color, vec3(0.0), vec3(1.0));
 	color = chunk3(color, color_resolution);
 	color *= shadows;
-	color = clamp(color + vec3(brightness), vec3(0.0), vec3(1.0));
+	
+	color += shadows*brightness;
+	color = clamp(color, vec3(0.0), vec3(1.0));
 	
 	float xpixelSize = 1.0/SCREEN_PIXEL_SIZE.x/pow(2.0, pixel_size);
 	
@@ -86,13 +88,10 @@ void fragment() {
 		for (int i = 0; i < 3; i++) {
 				//sin based channels
 			float scanMask = (cos((uv_warp - vec2((float(i)/3.0 + _offset)/xpixelSize, 0.0)) * TAU * horizontal_pixel_resolution * xpixelSize)*3.0 - 2.0).x;
-			scanMask *= smoothstep(0.0, 0.15, fract(uv_warp.y * 1.0/SCREEN_PIXEL_SIZE.y/pow(2.0, pixel_size)));
-			scanMask *= smoothstep(1.0, 0.85, fract(uv_warp.y * 1.0/SCREEN_PIXEL_SIZE.y/pow(2.0, pixel_size)));
+			scanMask *= smoothstep(0.0, 0.15, fract(uv_warp.y * 1.0/SCREEN_PIXEL_SIZE.y/pow(2.0, pixel_size) + 0.5));
+			scanMask *= smoothstep(1.0, 0.85, fract(uv_warp.y * 1.0/SCREEN_PIXEL_SIZE.y/pow(2.0, pixel_size) + 0.5));
+			//scanMask *= mix(0.05, 1.0, channels[i]);
 			scanMask *= channels[i];
-			//float a = 0.5;
-			//scanMask *= (abs(sin(uv_warp * PI * 1.0/SCREEN_PIXEL_SIZE/pow(2.0, pixel_size))).y + a)*channels[i];//opacity based brightness
-			//float value = 0.5/channels[i];//size based brightness
-			//scanMask *= max(cos((uv_warp - vec2(0.0, 0)) * PI * SCREEN_PIXEL_SIZE/pow(2.0, pixel_size)).y*value - value + 1.0, 0.0);
 			scanMask = clamp(scanMask, 0.0, 1.0);
 			channels[i] = scanMask;
 		}

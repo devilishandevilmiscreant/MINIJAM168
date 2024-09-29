@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Invader.cs" id="2_sk145"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmap5"]
-size = Vector2(1, 1)
+size = Vector2(32, 32)
 
 [node name="Invader" type="Sprite2D"]
-self_modulate = Color(1, 0, 0, 1)
+texture_filter = 1
 position = Vector2(60, 60)
 scale = Vector2(2, 2)
 texture = ExtResource("1_4muei")

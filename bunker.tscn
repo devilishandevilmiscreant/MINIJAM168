@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdxkdef10esd2"]
+[gd_scene load_steps=7 format=3 uid="uid://8val6q8asjmh"]
 
 [ext_resource type="Shader" path="res://bunker.gdshader" id="1_thcwt"]
-[ext_resource type="Texture2D" uid="uid://cyni063a3qqrn" path="res://bunker.png" id="2_iotgg"]
+[ext_resource type="Texture2D" uid="uid://cyni063a3qqrn" path="res://assets/sprites/bunker.png" id="2_iotgg"]
 [ext_resource type="Script" path="res://Bunker.cs" id="3_aym3s"]
 [ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="4_3x0s7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xaco1"]
 shader = ExtResource("1_thcwt")
-shader_parameter/text = PackedInt32Array()
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4smdy"]
 size = Vector2(32, 32)

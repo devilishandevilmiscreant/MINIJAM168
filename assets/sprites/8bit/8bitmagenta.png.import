@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brf8l7dbbn38j"
-path="res://.godot/imported/4bitcyan.png-899bc93c5ce4d003d283b2f87459ab00.ctex"
+uid="uid://dwtqnrlle6mgq"
+path="res://.godot/imported/8bitmagenta.png-fd4c6a3aca94aa9e65a6dbd55d3e22b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/4bitcyan.png"
-dest_files=["res://.godot/imported/4bitcyan.png-899bc93c5ce4d003d283b2f87459ab00.ctex"]
+source_file="res://assets/sprites/8bit/8bitmagenta.png"
+dest_files=["res://.godot/imported/8bitmagenta.png-fd4c6a3aca94aa9e65a6dbd55d3e22b7.ctex"]
 
 [params]
 

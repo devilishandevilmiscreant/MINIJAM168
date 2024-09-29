@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c52xky24oc67d"
-path="res://.godot/imported/4bitblue.png-1c0e903ce7ca07b07bdf6955f8667b41.ctex"
+uid="uid://bl3e2nld3pkrg"
+path="res://.godot/imported/8bityellow.png-9dbdd4a7d05791109811f3b5146ee5a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/4bitblue.png"
-dest_files=["res://.godot/imported/4bitblue.png-1c0e903ce7ca07b07bdf6955f8667b41.ctex"]
+source_file="res://assets/sprites/8bit/8bityellow.png"
+dest_files=["res://.godot/imported/8bityellow.png-9dbdd4a7d05791109811f3b5146ee5a3.ctex"]
 
 [params]
 

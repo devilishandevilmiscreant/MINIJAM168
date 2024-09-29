@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8w2iqol4oedg"
-path="res://.godot/imported/defender_4bit.png-6e1fb572ac9b600ebef6ee9631f59f27.ctex"
+uid="uid://b0lxc0x10xklp"
+path="res://.godot/imported/8bitwhite.png-90aacbd95fd10c49a1a904c60c945bb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/defender_4bit.png"
-dest_files=["res://.godot/imported/defender_4bit.png-6e1fb572ac9b600ebef6ee9631f59f27.ctex"]
+source_file="res://assets/sprites/8bit/8bitwhite.png"
+dest_files=["res://.godot/imported/8bitwhite.png-90aacbd95fd10c49a1a904c60c945bb6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsgoo8aorgvw6"
-path="res://.godot/imported/spr_background_3.png-b2d403d38b76230aadd161dddca3b930.ctex"
+uid="uid://bhtkokuopbstk"
+path="res://.godot/imported/4bitred.png-1f6dc50c9e2759787cf11505d809abb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/spr_background_3.png"
-dest_files=["res://.godot/imported/spr_background_3.png-b2d403d38b76230aadd161dddca3b930.ctex"]
+source_file="res://assets/sprites/4bit/4bitred.png"
+dest_files=["res://.godot/imported/4bitred.png-1f6dc50c9e2759787cf11505d809abb1.ctex"]
 
 [params]
 

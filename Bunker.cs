@@ -13,14 +13,14 @@ public partial class Bunker : Sprite2D
 	
 	[Export] private AudioStreamPlayer2D impactSoundPlayer;
 
-    public void _on_area_2d_area_entered(Area2D area) {
-        if (area.GetParent() is Bullet b) {
-            Vector2 impactPoint = area.GlobalPosition;
-            impactPoint -= GlobalPosition - Vector2.One*64;
-            int gridX = (int)(impactPoint.X / VOXEL_SIZE);
-            int gridY = (int)(impactPoint.Y / VOXEL_SIZE);
-            gridX = Mathf.Clamp(gridX, 0, 3);
-            gridY = Mathf.Clamp(gridY, 0, 3);
+	public void _on_area_2d_area_entered(Area2D area) {
+		if (area.GetParent() is Bullet b) {
+			Vector2 impactPoint = area.GlobalPosition;
+			impactPoint -= GlobalPosition - Vector2.One*64;
+			int gridX = (int)(impactPoint.X / VOXEL_SIZE);
+			int gridY = (int)(impactPoint.Y / VOXEL_SIZE);
+			gridX = Mathf.Clamp(gridX, 0, 3);
+			gridY = Mathf.Clamp(gridY, 0, 3);
 
 			while (gridY <= 3 && gridY >= 0) {
 				if (voxelGrid[gridX + gridY*4] == 1) {
@@ -39,9 +39,9 @@ public partial class Bunker : Sprite2D
 				}
 			}
 
-        }
-    }
-    void UpdateBunkerSprite() {
-        ((ShaderMaterial)Material).SetShaderParameter("text", voxelGrid);
-    }
+		}
+	}
+	void UpdateBunkerSprite() {
+		((ShaderMaterial)Material).SetShaderParameter("text", voxelGrid);
+	}
 }

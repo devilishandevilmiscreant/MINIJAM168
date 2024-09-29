@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://8val6q8asjmh"]
+[gd_scene load_steps=7 format=3 uid="uid://bdxkdef10esd2"]
 
 [ext_resource type="Shader" path="res://bunker.gdshader" id="1_thcwt"]
 [ext_resource type="Texture2D" uid="uid://cyni063a3qqrn" path="res://assets/sprites/bunker.png" id="2_iotgg"]

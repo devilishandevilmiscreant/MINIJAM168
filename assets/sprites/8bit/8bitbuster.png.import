@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b511bxl8ji45s"
-path="res://.godot/imported/4bityellow.png-95d265d6fc1c183f7cf13fcd08609627.ctex"
+uid="uid://bng5cqqnvo8l"
+path="res://.godot/imported/8bitbuster.png-87a6d9bb0331756caf661f86cbd4a027.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/4bityellow.png"
-dest_files=["res://.godot/imported/4bityellow.png-95d265d6fc1c183f7cf13fcd08609627.ctex"]
+source_file="res://assets/sprites/8bit/8bitbuster.png"
+dest_files=["res://.godot/imported/8bitbuster.png-87a6d9bb0331756caf661f86cbd4a027.ctex"]
 
 [params]
 

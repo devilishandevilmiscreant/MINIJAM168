@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0cxqhcvh2me7"]
 
-[ext_resource type="Texture2D" uid="uid://bhtkokuopbstk" path="res://assets/sprites/4bitred.png" id="1_qkbem"]
+[ext_resource type="Texture2D" uid="uid://bvodm7eaodbv5" path="res://assets/sprites/8bit/8bitred.png" id="1_64owi"]
 [ext_resource type="Script" path="res://Invader.cs" id="2_sk145"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmap5"]
@@ -9,8 +9,8 @@ size = Vector2(32, 32)
 [node name="Invader" type="Sprite2D"]
 texture_filter = 1
 position = Vector2(60, 60)
-scale = Vector2(16, 16)
-texture = ExtResource("1_qkbem")
+scale = Vector2(8, 8)
+texture = ExtResource("1_64owi")
 script = ExtResource("2_sk145")
 
 [node name="Area2D" type="Area2D" parent="."]

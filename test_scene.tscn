@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1i7iqdd408cf"]
+[gd_scene load_steps=16 format=3 uid="uid://d1i7iqdd408cf"]
 
 [ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
+[ext_resource type="Texture2D" uid="uid://54sb60v6dl1l" path="res://assets/sprites/space_defender_mj168.png" id="2_s4f62"]
 [ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
 [ext_resource type="PackedScene" uid="uid://bdxkdef10esd2" path="res://bunker.tscn" id="4_epvbt"]
 [ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
@@ -36,13 +37,6 @@ shader_parameter/brightness = 0.0
 shader_parameter/space = 1.33
 shader_parameter/_offset = 2.21
 shader_parameter/three_channels = true
-
-[sub_resource type="Gradient" id="Gradient_tjjvh"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_58lug"]
-gradient = SubResource("Gradient_tjjvh")
-width = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
 size = Vector2(1, 1)
@@ -82,8 +76,8 @@ grow_vertical = 2
 
 [node name="Defender" type="Sprite2D" parent="."]
 position = Vector2(60, 900)
-scale = Vector2(64, 64)
-texture = SubResource("GradientTexture1D_58lug")
+scale = Vector2(2, 2)
+texture = ExtResource("2_s4f62")
 script = ExtResource("3_07nm3")
 
 [node name="Area2D" type="Area2D" parent="Defender"]

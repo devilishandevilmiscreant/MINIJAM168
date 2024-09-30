@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm5vydqfhq2cq"]
+[gd_scene load_steps=4 format=3 uid="uid://cm5vydqfhq2cq"]
 
+[ext_resource type="FontFile" uid="uid://bv168ykrcayct" path="res://assets/fonts/ArcadeNormal-ZDZ.ttf" id="1_7d08d"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_pfggu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_63fon"]
@@ -37,14 +38,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -317.5
-offset_top = -122.0
-offset_right = 317.5
-offset_bottom = 83.0
+offset_left = -470.0
+offset_top = -45.0
+offset_right = 470.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 150
+theme_override_fonts/font = ExtResource("1_7d08d")
+theme_override_font_sizes/font_size = 120
 text = "You Win!"
+horizontal_alignment = 1
 
 [node name="Reason" type="Label" parent="."]
 layout_mode = 1
@@ -52,10 +55,11 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 532.0
+offset_top = 566.0
 offset_right = 480.0
-offset_bottom = 741.0
+offset_bottom = 958.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_7d08d")
 theme_override_font_sizes/font_size = 75
 text = "Reason"
 horizontal_alignment = 1

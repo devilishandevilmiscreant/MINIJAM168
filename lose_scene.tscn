@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt2281t0edhuq"]
+[gd_scene load_steps=4 format=3 uid="uid://dt2281t0edhuq"]
 
+[ext_resource type="FontFile" uid="uid://bv168ykrcayct" path="res://assets/fonts/ArcadeNormal-ZDZ.ttf" id="1_7nj3p"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rvhx7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_63fon"]
@@ -37,14 +38,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -317.5
-offset_top = -122.0
-offset_right = 317.5
-offset_bottom = 83.0
+offset_left = -352.5
+offset_top = -30.0
+offset_right = 352.5
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 150
+theme_override_fonts/font = ExtResource("1_7nj3p")
+theme_override_font_sizes/font_size = 120
 text = "You Lose"
+horizontal_alignment = 1
 
 [node name="Reason" type="Label" parent="."]
 layout_mode = 1
@@ -52,10 +55,11 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 532.0
+offset_top = 566.0
 offset_right = 480.0
 offset_bottom = 741.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_7nj3p")
 theme_override_font_sizes/font_size = 75
 text = "Reason"
 horizontal_alignment = 1

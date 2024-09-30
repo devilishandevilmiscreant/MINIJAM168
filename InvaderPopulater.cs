@@ -1,22 +1,21 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 // [Tool]
 public partial class InvaderPopulater : Node2D
 {
+	public static InvaderPopulater Instance;
 	[Export] string InvaderScene = "res://invader.tscn";
 	[Export] int NumberOfInvaders = 44;
 	[Export] int Margin = 16;
 	[Export] Vector2 Offset = new(60, 60);//40 pix gap on either side
-	// [Export] bool Update {//worthless bool, just used to call update in tool
-	//     get => true;
-	//     set => UpdateInvaders();
-	// }
 	public List<Invader> Invaders = new();
 
-	// public void UpdateInvaders() {
 	public override void _Ready() {
+		Instance = this;
+
 		var invaderPackedScene = GD.Load<PackedScene>(InvaderScene);
 		int invaderSize = 0;        
 		int rows = 0;
@@ -30,6 +29,7 @@ public partial class InvaderPopulater : Node2D
 			
 			Invader inv = invaderPackedScene.Instantiate<Invader>();
 			AddChild(inv);
+			Invaders.Add(inv);
 			
 			if (i == 0) {
 				invaderSize = inv.SpriteSize; //set sprite size on the first invader
@@ -42,6 +42,12 @@ public partial class InvaderPopulater : Node2D
 			inv.MovementDirection.X = 1 - (rows%2) * 2;//even rows = 1, odd rows = -1
 			inv.DesiredPosition = new Vector2(Offset.X - inv.MovementDirection.X*20f/(Margin/16f) + (i - widthOfRow * rows) * (invaderSize + Margin), Offset.Y + rows * (invaderSize + Margin));
 			inv.Margin = Margin;
+			if (inv.CanShoot.Ready);//call ready to throw it away
 		}
+	}
+	public void Remove(Invader inv) {
+		Invaders.Remove(inv);
+		if (Invaders.Count == 0)
+			GameManager.Instance.Lose("You let the invasion fail.");
 	}
 }

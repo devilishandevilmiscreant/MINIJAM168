@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmrlabdgtnrfo"]
+[gd_scene load_steps=7 format=3 uid="uid://bfsqkud0enna6"]
 
 [ext_resource type="Script" path="res://Bullet.cs" id="1_tg1sf"]
 [ext_resource type="AudioStream" uid="uid://duw061hs5h4ak" path="res://assets/sounds/snd_laser.mp3" id="2_xuxau"]

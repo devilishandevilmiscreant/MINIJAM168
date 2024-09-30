@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Invader.cs" id="2_sk145"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmap5"]
-size = Vector2(8.625, 9.125)
+size = Vector2(8, 8)
 
 [node name="Invader" type="Sprite2D"]
 texture_filter = 1
@@ -12,9 +12,9 @@ position = Vector2(60, 60)
 scale = Vector2(8, 8)
 texture = ExtResource("1_64owi")
 script = ExtResource("2_sk145")
+Interval = 15
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.1875, -0.1875)
 shape = SubResource("RectangleShape2D_kmap5")

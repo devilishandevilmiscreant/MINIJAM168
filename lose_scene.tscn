@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt2281t0edhuq"]
+
+[ext_resource type="FontFile" uid="uid://bv168ykrcayct" path="res://assets/fonts/ArcadeNormal-ZDZ.ttf" id="1_7nj3p"]
+[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rvhx7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_63fon"]
+shader = ExtResource("1_rvhx7")
+shader_parameter/pixel_size = 3.0
+shader_parameter/horizontal_pixel_resolution = 1.0
+shader_parameter/curvature = 2.0
+shader_parameter/color_resolution = 2.0
+shader_parameter/brightness = 1.25
+shader_parameter/space = 1.33
+shader_parameter/_offset = 1.655
+shader_parameter/three_channels = true
+
+[node name="Lose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.5
+offset_top = -30.0
+offset_right = 352.5
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_7nj3p")
+theme_override_font_sizes/font_size = 120
+text = "You Lose"
+horizontal_alignment = 1
+
+[node name="Reason" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 566.0
+offset_right = 480.0
+offset_bottom = 741.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_7nj3p")
+theme_override_font_sizes/font_size = 75
+text = "Reason"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PostProcessingLayer" type="CanvasLayer" parent="Camera2D"]
+layer = 128
+
+[node name="CRT Shader" type="ColorRect" parent="Camera2D/PostProcessingLayer"]
+material = SubResource("ShaderMaterial_63fon")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true

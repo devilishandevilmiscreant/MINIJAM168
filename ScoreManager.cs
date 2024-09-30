@@ -35,7 +35,7 @@ public partial class ScoreManager : Control
 		}
 
 		// Check if points exceed 100 and update the subtitle
-		if (subtitleLabel != null && points > 100)
+		if (subtitleLabel != null && points > 150)
 		{
 			subtitleLabel.Text = "Press X";
 		}

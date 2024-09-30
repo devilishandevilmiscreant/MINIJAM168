@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cqapy8dl1ca2f"]
+[gd_scene load_steps=25 format=3 uid="uid://cqapy8dl1ca2f"]
 
 [ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
@@ -43,8 +43,16 @@ shader_parameter/space = 1.33
 shader_parameter/_offset = 1.655
 shader_parameter/three_channels = true
 
+[sub_resource type="LabelSettings" id="LabelSettings_22mbg"]
+font = ExtResource("11_og0hf")
+font_size = 64
+font_color = Color(0, 1, 0, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
-size = Vector2(5.5, 7.8)
+size = Vector2(6, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54gnk"]
+size = Vector2(6, 8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
 shader = ExtResource("4_r36f3")
@@ -66,11 +74,6 @@ shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 font = ExtResource("11_og0hf")
 font_size = 64
 font_color = Color(1, 0.952941, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_22mbg"]
-font = ExtResource("11_og0hf")
-font_size = 64
-font_color = Color(0, 1, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_f3tp7"]
 font = ExtResource("11_og0hf")
@@ -97,6 +100,16 @@ grow_vertical = 2
 position = Vector2(480, 480)
 texture = ExtResource("4_6yyke")
 
+[node name="Subtitle" type="Label" parent="."]
+offset_left = 116.0
+offset_top = 801.0
+offset_right = 868.0
+offset_bottom = 1005.0
+text = "DEFEND EARTH"
+label_settings = SubResource("LabelSettings_22mbg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Defender" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(60, 900)
@@ -118,6 +131,11 @@ scale = Vector2(10, 10)
 texture = ExtResource("3_p0npd")
 script = ExtResource("5_xyplx")
 bunkers = [NodePath("../Bunker"), NodePath("../Bunker2"), NodePath("../Bunker3"), NodePath("../Bunker4")]
+
+[node name="Area2D" type="Area2D" parent="DefenderAlly"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenderAlly/Area2D"]
+shape = SubResource("RectangleShape2D_54gnk")
 
 [node name="InvaderPopulater" type="Node2D" parent="."]
 script = ExtResource("5_11era")
@@ -166,17 +184,6 @@ theme_override_font_sizes/font_size = 566
 text = "INVADINg ALIENS"
 label_settings = SubResource("LabelSettings_jf5q2")
 uppercase = true
-
-[node name="Subtitle" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 801.0
-offset_right = 868.0
-offset_bottom = 1005.0
-text = "DEFEND EARTH"
-label_settings = SubResource("LabelSettings_22mbg")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PointsLabel" type="Label" parent="Control"]
 layout_mode = 0

@@ -15,6 +15,9 @@ public partial class GameManager : Node
 		Root = GetTree().Root;
     }
 
+    public void Start() {
+        SwapScene("res://game_scene.tscn");
+    }
     public void Win(string reason) {
         TimePasses = false;
         StartTimer(1, () => {

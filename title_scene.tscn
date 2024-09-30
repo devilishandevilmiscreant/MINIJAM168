@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm5vydqfhq2cq"]
+[gd_scene load_steps=10 format=3 uid="uid://ckl5jdwg6peus"]
 
-[ext_resource type="FontFile" uid="uid://bv168ykrcayct" path="res://assets/fonts/ArcadeNormal-ZDZ.ttf" id="1_7d08d"]
-[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_pfggu"]
-[ext_resource type="Script" path="res://RetryButton.cs" id="3_pjtau"]
-[ext_resource type="Script" path="res://QuitButton.cs" id="4_ve2lv"]
+[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_kvegp"]
+[ext_resource type="FontFile" uid="uid://bv168ykrcayct" path="res://assets/fonts/ArcadeNormal-ZDZ.ttf" id="2_hk3og"]
+[ext_resource type="Script" path="res://RetryButton.cs" id="3_8ksm1"]
+[ext_resource type="Script" path="res://QuitButton.cs" id="4_vrnor"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fk6vn"]
-shader = ExtResource("1_pfggu")
+shader = ExtResource("1_kvegp")
 shader_parameter/pixel_size = 3.0
 shader_parameter/horizontal_pixel_resolution = 1.0
 shader_parameter/curvature = 2.0
@@ -69,58 +69,59 @@ offset_top = 28.0
 offset_right = 470.0
 offset_bottom = 149.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_7d08d")
+theme_override_fonts/font = ExtResource("2_hk3og")
 theme_override_font_sizes/font_size = 120
-text = "You Win"
-horizontal_alignment = 1
-
-[node name="Reason" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -480.0
-offset_top = 233.0
-offset_right = 480.0
-offset_bottom = 546.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_7d08d")
-theme_override_font_sizes/font_size = 75
-text = "You killed the defender."
+text = "Space Invaders Clone"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Retry" type="Button" parent="."]
-offset_left = 52.0
-offset_top = 730.0
-offset_right = 500.0
-offset_bottom = 814.0
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -42.0
+offset_right = 224.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_7d08d")
+theme_override_fonts/font = ExtResource("2_hk3og")
 theme_override_font_sizes/font_size = 75
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lcqlo")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_0dt1x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_briqy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhhy5")
-text = "Retry?"
-script = ExtResource("3_pjtau")
+text = "Play"
+script = ExtResource("3_8ksm1")
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 523.0
-offset_top = 830.0
-offset_right = 912.0
-offset_bottom = 914.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -130.0
+offset_right = 195.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_7d08d")
+theme_override_fonts/font = ExtResource("2_hk3og")
 theme_override_font_sizes/font_size = 75
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lcqlo")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_0dt1x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_briqy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhhy5")
 text = "Quit?"
-script = ExtResource("4_ve2lv")
+script = ExtResource("4_vrnor")
 
-[connection signal="pressed" from="Retry" to="Retry" method="_on_pressed"]
+[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

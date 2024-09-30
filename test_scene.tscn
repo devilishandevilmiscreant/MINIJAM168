@@ -131,6 +131,7 @@ offset_bottom = 191.0
 label_settings = SubResource("LabelSettings_f3tp7")
 
 [node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 91.0
 offset_top = 800.0
 offset_right = 905.0

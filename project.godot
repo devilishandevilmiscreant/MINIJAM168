@@ -14,7 +14,6 @@ config/name="MINIJAM168"
 run/main_scene="res://title_scene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

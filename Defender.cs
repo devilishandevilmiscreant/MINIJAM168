@@ -18,7 +18,7 @@ public partial class Defender : Sprite2D
 	}
 
 	public override void _Process(double delta) {
-        if (!GameManager.Instance.TimePasses) return;
+		if (!GameManager.Instance.TimePasses) return;
 
 		desiredPosition += new Vector2(movementDirection.X * Speed * (float)delta, 0);
 		desiredPosition = desiredPosition.X > 900 ? new Vector2(900, desiredPosition.Y) : desiredPosition;

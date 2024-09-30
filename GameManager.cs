@@ -3,37 +3,37 @@ using System;
 
 public partial class GameManager : Node
 {
-    public static GameManager Instance;
+	public static GameManager Instance;
 	public Viewport Root;
-    public Node CurrentScene;
-    public bool TimePasses = true;
-    public override void _Ready() {
+	public Node CurrentScene;
+	public bool TimePasses = true;
+	public override void _Ready() {
 		CurrentScene = Root.GetChild(Root.GetChildCount() - 1);
-    }
-    public override void _EnterTree() {
+	}
+	public override void _EnterTree() {
 		Instance = this;
 		Root = GetTree().Root;
-    }
+	}
 
-    public void Start() {
-        SwapScene("res://game_scene.tscn");
-    }
-    public void Win(string reason) {
-        TimePasses = false;
-        StartTimer(1, () => {
-    		SwapScene("res://win_scene.tscn");
-            GetNode<Label>("../Win/Reason").Text = reason;
-            TimePasses = true;
-        });
-    }
-    public void Lose(string reason) {
-        TimePasses = false;
-        StartTimer(1, () => {
-    		SwapScene("res://lose_scene.tscn");
-            GetNode<Label>("../Lose/Reason").Text = reason;
-            TimePasses = true;
-        });
-    }
+	public void Start() {
+		SwapScene("res://game_scene.tscn");
+	}
+	public void Win(string reason) {
+		TimePasses = false;
+		StartTimer(1, () => {
+			SwapScene("res://win_scene.tscn");
+			GetNode<Label>("../Win/Reason").Text = reason;
+			TimePasses = true;
+		});
+	}
+	public void Lose(string reason) {
+		TimePasses = false;
+		StartTimer(1, () => {
+			SwapScene("res://lose_scene.tscn");
+			GetNode<Label>("../Lose/Reason").Text = reason;
+			TimePasses = true;
+		});
+	}
 
 	public void StartTimer(float time, Action action) {
 		Timer timer = new(){
@@ -44,7 +44,7 @@ public partial class GameManager : Node
 		AddChild(timer);
 		timer.Timeout += action;
 	}
-    public void QuitApplication() {
+	public void QuitApplication() {
 		GetTree().Quit();
 	}
 	public void LoadScene(string scene) {

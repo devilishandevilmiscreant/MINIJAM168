@@ -25,7 +25,7 @@ public partial class Bullet : Sprite2D
 
 	public override void _Process(double delta)
 	{
-        if (!GameManager.Instance.TimePasses) return;
+		if (!GameManager.Instance.TimePasses) return;
 
 		DesiredPosition += MovementDirection * Speed * (float)delta;
 		base._Process(delta);

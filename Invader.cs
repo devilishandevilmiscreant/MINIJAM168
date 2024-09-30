@@ -25,7 +25,7 @@ public partial class Invader : Sprite2D
 
 	public override void _Process(double delta)
 	{
-        if (!GameManager.Instance.TimePasses) return;
+		if (!GameManager.Instance.TimePasses) return;
 
 		if (CanShoot.Ready) { //every three seconds try to shoot
 			if (rng.Randf() <= Chance)

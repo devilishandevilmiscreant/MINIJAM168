@@ -1,0 +1,177 @@
+[gd_scene load_steps=23 format=3 uid="uid://bovllckdgptc8"]
+
+[ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
+[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
+[ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
+[ext_resource type="Texture2D" uid="uid://bng5cqqnvo8l" path="res://assets/sprites/8bit/8bitbuster.png" id="3_p0npd"]
+[ext_resource type="Texture2D" uid="uid://c2p8ecyjcenik" path="res://assets/sprites/background/spr_background_1.png" id="4_6yyke"]
+[ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="4_epvbt"]
+[ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
+[ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
+[ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="7_dq85u"]
+[ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="9_sagnu"]
+[ext_resource type="FontFile" uid="uid://cmjdb4wxo2cua" path="res://assets/fonts/ArcadeRounded-3DM.ttf" id="11_og0hf"]
+[ext_resource type="Script" path="res://ScoreManager.cs" id="12_fhu2j"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_2aywe"]
+script/source = "using Godot;
+using System;
+
+public partial class MusicPlayer : AudioStreamPlayer2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q1ow"]
+shader = ExtResource("1_rdbom")
+shader_parameter/pixel_size = 3.0
+shader_parameter/horizontal_pixel_resolution = 1.0
+shader_parameter/curvature = 2.0
+shader_parameter/color_resolution = 2.0
+shader_parameter/brightness = 1.25
+shader_parameter/space = 1.33
+shader_parameter/_offset = 1.655
+shader_parameter/three_channels = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
+size = Vector2(5.5, 7.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehs3p"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61v3x"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6f05"]
+shader = ExtResource("4_r36f3")
+shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jf5q2"]
+font = ExtResource("11_og0hf")
+font_size = 64
+font_color = Color(1, 0.952941, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_22mbg"]
+font = ExtResource("11_og0hf")
+font_size = 64
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f3tp7"]
+font = ExtResource("11_og0hf")
+font_size = 48
+
+[node name="TestScene" type="Node2D"]
+script = SubResource("CSharpScript_2aywe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PostProcessingLayer" type="CanvasLayer" parent="Camera2D"]
+layer = 128
+
+[node name="CRT Shader" type="ColorRect" parent="Camera2D/PostProcessingLayer"]
+material = SubResource("ShaderMaterial_7q1ow")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(480, 480)
+texture = ExtResource("4_6yyke")
+
+[node name="Defender" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(60, 900)
+scale = Vector2(10, 10)
+texture = ExtResource("3_p0npd")
+script = ExtResource("3_07nm3")
+
+[node name="Area2D" type="Area2D" parent="Defender"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Area2D"]
+position = Vector2(-0.0499992, 0.200005)
+shape = SubResource("RectangleShape2D_yrpoj")
+
+[node name="InvaderPopulater" type="Node2D" parent="."]
+script = ExtResource("5_11era")
+
+[node name="Bunker" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_6ol3c")
+position = Vector2(92, 768)
+scale = Vector2(4, 4)
+
+[node name="Bunker2" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_ehs3p")
+position = Vector2(348, 768)
+scale = Vector2(4, 4)
+
+[node name="Bunker3" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_61v3x")
+position = Vector2(604, 768)
+scale = Vector2(4, 4)
+
+[node name="Bunker4" parent="." instance=ExtResource("4_epvbt")]
+material = SubResource("ShaderMaterial_l6f05")
+position = Vector2(860, 768)
+scale = Vector2(4, 4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_dq85u")
+script = ExtResource("1_78xd0")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_sagnu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_fhu2j")
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 949.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 566
+text = "INVADINg ALIENS"
+label_settings = SubResource("LabelSettings_jf5q2")
+uppercase = true
+
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 801.0
+offset_right = 868.0
+offset_bottom = 1005.0
+text = "DEFEND EARTH"
+label_settings = SubResource("LabelSettings_22mbg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointsLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 106.0
+offset_right = 152.0
+offset_bottom = 191.0
+label_settings = SubResource("LabelSettings_f3tp7")

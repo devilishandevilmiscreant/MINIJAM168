@@ -42,7 +42,7 @@ shader_parameter/_offset = 1.655
 shader_parameter/three_channels = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
-size = Vector2(8, 8)
+size = Vector2(5.5, 7.8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
 shader = ExtResource("8_af3qc")

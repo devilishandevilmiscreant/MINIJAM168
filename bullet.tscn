@@ -14,10 +14,12 @@ width = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ai3yd"]
 size = Vector2(1, 1)
 
-[node name="Bullet" type="Sprite2D"]
+[node name="Bullet" type="Sprite2D" node_paths=PackedStringArray("laserSoundPlayer", "explosionSoundPlayer")]
 scale = Vector2(4, 32)
 texture = SubResource("GradientTexture1D_8cxcn")
 script = ExtResource("1_tg1sf")
+laserSoundPlayer = NodePath("AudioStreamPlayer2D")
+explosionSoundPlayer = NodePath("AudioStreamPlayer2D2")
 
 [node name="Area2D" type="Area2D" parent="."]
 

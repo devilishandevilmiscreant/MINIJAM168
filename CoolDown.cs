@@ -35,4 +35,7 @@ public class CoolDown
 		}
 		timer.Start();
 	}
+    public bool Peak() {
+        return _ready;
+    }
 }

@@ -25,6 +25,8 @@ public partial class Bullet : Sprite2D
 
 	public override void _Process(double delta)
 	{
+        if (!GameManager.Instance.TimePasses) return;
+
 		DesiredPosition += MovementDirection * Speed * (float)delta;
 		base._Process(delta);
 		if (DesiredPosition.Y > 960 || DesiredPosition.Y < 0)
@@ -43,10 +45,20 @@ public partial class Bullet : Sprite2D
 
 		// Disable friendly fire
 		if (parent is Invader && Invader) return;
+		if (parent is Ally && !Invader) return;
 		if (parent is Defender && !Invader) return;
-		if (!(parent is Invader || parent is Defender)) return;
+		if (!(parent is Invader || parent is Defender || parent is Ally)) return;
 
 		// Destroy both the bullet and the collided object
+		if (parent is Ally)
+			GameManager.Instance.Win("You killed the defender.");
+
+		if (parent is Defender) //parent's death causes game end
+			GameManager.Instance.Lose("You died. The defender finished off the invasion.");
+
+		if (parent is Invader)//remove invader from list
+			InvaderPopulater.Instance.Remove(parent as Invader);
+
 		parent.QueueFree();
 
 		// Play explosion sound before destroying the bullet

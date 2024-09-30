@@ -10,22 +10,24 @@ public partial class Invader : Sprite2D
 	[Export] public int Interval = 16;//960/2^3/8
 	[Export] public float Chance = 0.125f;
 	[Export] public int SpriteSize = 64;
+	public CoolDown CanShoot;
 	public int Margin = 16;
 	public Vector2 MovementDirection = Vector2.Right;
 	public Vector2 DesiredPosition;
 	PackedScene bulletPackedScene;
-	CoolDown canShoot;
 	RandomNumberGenerator rng = new();
 
 	public override void _Ready() {
-		canShoot = new(6 * (0.5f + rng.Randf()/2f));
+		CanShoot = new(6 * (0.5f + rng.Randf()/2f));
 		DesiredPosition = Position;
 		bulletPackedScene = GD.Load<PackedScene>(BulletScene);
 	}
 
 	public override void _Process(double delta)
 	{
-		if (canShoot.Ready) { //every three seconds try to shoot
+        if (!GameManager.Instance.TimePasses) return;
+
+		if (CanShoot.Ready) { //every three seconds try to shoot
 			if (rng.Randf() <= Chance)
 				spawnBullet();
 		}

@@ -1,15 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1i7iqdd408cf"]
+[gd_scene load_steps=19 format=3 uid="uid://d1i7iqdd408cf"]
 
-[ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
-[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
-[ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
-[ext_resource type="Texture2D" uid="uid://bng5cqqnvo8l" path="res://assets/sprites/8bit/8bitbuster.png" id="3_p0npd"]
-[ext_resource type="Texture2D" uid="uid://c2p8ecyjcenik" path="res://assets/sprites/background/spr_background_1.png" id="4_6yyke"]
-[ext_resource type="PackedScene" uid="uid://bdxkdef10esd2" path="res://bunker.tscn" id="4_epvbt"]
-[ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
-[ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
-[ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="7_dq85u"]
-[ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="9_sagnu"]
+[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_k0smu"]
+[ext_resource type="Texture2D" uid="uid://c2p8ecyjcenik" path="res://assets/sprites/background/spr_background_1.png" id="2_7cvvy"]
+[ext_resource type="Texture2D" uid="uid://bng5cqqnvo8l" path="res://assets/sprites/8bit/8bitbuster.png" id="3_hn8qn"]
+[ext_resource type="Script" path="res://Defender.cs" id="4_pwgig"]
+[ext_resource type="Script" path="res://Ally.cs" id="5_d33jg"]
+[ext_resource type="Script" path="res://InvaderPopulater.cs" id="6_0n473"]
+[ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="7_bq7kc"]
+[ext_resource type="Shader" path="res://bunker.gdshader" id="8_af3qc"]
+[ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="9_yje1t"]
+[ext_resource type="Script" path="res://MusicPlayer.cs" id="10_sj2jg"]
+[ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="11_yv635"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_2aywe"]
 script/source = "using Godot;
@@ -30,7 +31,7 @@ public partial class MusicPlayer : AudioStreamPlayer2D
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7q1ow"]
-shader = ExtResource("1_rdbom")
+shader = ExtResource("1_k0smu")
 shader_parameter/pixel_size = 3.0
 shader_parameter/horizontal_pixel_resolution = 1.0
 shader_parameter/curvature = 2.0
@@ -41,25 +42,25 @@ shader_parameter/_offset = 1.655
 shader_parameter/three_channels = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpoj"]
-size = Vector2(32, 32)
+size = Vector2(8, 8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ol3c"]
-shader = ExtResource("4_r36f3")
+shader = ExtResource("8_af3qc")
 shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehs3p"]
-shader = ExtResource("4_r36f3")
+shader = ExtResource("8_af3qc")
 shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61v3x"]
-shader = ExtResource("4_r36f3")
+shader = ExtResource("8_af3qc")
 shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l6f05"]
-shader = ExtResource("4_r36f3")
+shader = ExtResource("8_af3qc")
 shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
-[node name="TestScene" type="Node2D"]
+[node name="GameScene" type="Node2D"]
 script = SubResource("CSharpScript_2aywe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -75,49 +76,64 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(480, 480)
-texture = ExtResource("4_6yyke")
+texture = ExtResource("2_7cvvy")
 
-[node name="Defender" type="Sprite2D" parent="."]
+[node name="DefenderPlayer" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(60, 900)
 scale = Vector2(10, 10)
-texture = ExtResource("3_p0npd")
-script = ExtResource("3_07nm3")
+texture = ExtResource("3_hn8qn")
+script = ExtResource("4_pwgig")
 
-[node name="Area2D" type="Area2D" parent="Defender"]
+[node name="Area2D" type="Area2D" parent="DefenderPlayer"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenderPlayer/Area2D"]
+shape = SubResource("RectangleShape2D_yrpoj")
+
+[node name="DefenderAlly" type="Sprite2D" parent="." node_paths=PackedStringArray("bunkers")]
+self_modulate = Color(1, 0, 1, 1)
+texture_filter = 1
+position = Vector2(217, 900)
+scale = Vector2(10, 10)
+texture = ExtResource("3_hn8qn")
+script = ExtResource("5_d33jg")
+bunkers = [NodePath("../Bunker"), NodePath("../Bunker2"), NodePath("../Bunker3"), NodePath("../Bunker4")]
+
+[node name="Area2D" type="Area2D" parent="DefenderAlly"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenderAlly/Area2D"]
 shape = SubResource("RectangleShape2D_yrpoj")
 
 [node name="InvaderPopulater" type="Node2D" parent="."]
-script = ExtResource("5_11era")
+script = ExtResource("6_0n473")
 
-[node name="Bunker" parent="." instance=ExtResource("4_epvbt")]
+[node name="Bunker" parent="." instance=ExtResource("7_bq7kc")]
 material = SubResource("ShaderMaterial_6ol3c")
 position = Vector2(92, 768)
 scale = Vector2(4, 4)
 
-[node name="Bunker2" parent="." instance=ExtResource("4_epvbt")]
+[node name="Bunker2" parent="." instance=ExtResource("7_bq7kc")]
 material = SubResource("ShaderMaterial_ehs3p")
 position = Vector2(348, 768)
 scale = Vector2(4, 4)
 
-[node name="Bunker3" parent="." instance=ExtResource("4_epvbt")]
+[node name="Bunker3" parent="." instance=ExtResource("7_bq7kc")]
 material = SubResource("ShaderMaterial_61v3x")
 position = Vector2(604, 768)
 scale = Vector2(4, 4)
 
-[node name="Bunker4" parent="." instance=ExtResource("4_epvbt")]
+[node name="Bunker4" parent="." instance=ExtResource("7_bq7kc")]
 material = SubResource("ShaderMaterial_l6f05")
 position = Vector2(860, 768)
 scale = Vector2(4, 4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_dq85u")
-script = ExtResource("1_78xd0")
+stream = ExtResource("9_yje1t")
+script = ExtResource("10_sj2jg")
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_sagnu")
+stream = ExtResource("11_yv635")

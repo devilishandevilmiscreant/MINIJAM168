@@ -8,7 +8,7 @@ public partial class Defender : Sprite2D
 	[Export] public float Speed = 200;
 	[Export] public int Interval = 16;//960/2^3/8
 	PackedScene bulletPackedScene;
-	CoolDown canShoot = new(0.05f);
+	CoolDown canShoot = new(1f);
 	Vector2 movementDirection = Vector2.Zero;
 	Vector2 desiredPosition;
 
@@ -18,6 +18,8 @@ public partial class Defender : Sprite2D
 	}
 
 	public override void _Process(double delta) {
+        if (!GameManager.Instance.TimePasses) return;
+
 		desiredPosition += new Vector2(movementDirection.X * Speed * (float)delta, 0);
 		desiredPosition = desiredPosition.X > 900 ? new Vector2(900, desiredPosition.Y) : desiredPosition;
 		desiredPosition = desiredPosition.X < 60 ? new Vector2(60, desiredPosition.Y) : desiredPosition;

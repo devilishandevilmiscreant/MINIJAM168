@@ -41,6 +41,12 @@ public partial class Bunker : Sprite2D
 
 		}
 	}
+	public bool Defendable() {
+		for (int i = 0; i < 16; i++) {
+			if (voxelGrid[i] == 1) return true;
+		}
+		return false;//if no voxels left
+	}
 	void UpdateBunkerSprite() {
 		((ShaderMaterial)Material).SetShaderParameter("text", voxelGrid);
 	}

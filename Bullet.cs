@@ -81,9 +81,6 @@ public partial class Bullet : Sprite2D
 		ScoreManager scoreManager = GetNode<ScoreManager>("/root/TestScene/Control"); // Adjust path if necessary
 		scoreManager.AddPoints(10);  // Adds 10 points when an alien is destroyed
 
-		GD.Print("ScoreManager found:", scoreManager != null);  // Prints true if found
-		
-		
 		// Destroy the bullet immediately after
 		QueueFree();
 

@@ -35,7 +35,13 @@ public class CoolDown
 		}
 		timer.Start();
 	}
+	//return state without setting timer
 	public bool Peak() {
 		return _ready;
+	}
+	//reset timer without returning state
+	public void Throw() {
+		_ready = false;
+		_countDown();
 	}
 }

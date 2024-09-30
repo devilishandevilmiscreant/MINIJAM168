@@ -71,7 +71,7 @@ offset_bottom = 149.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_hk3og")
 theme_override_font_sizes/font_size = 120
-text = "Space Invaders Clone"
+text = "Rowdy Aliens"
 horizontal_alignment = 1
 autowrap_mode = 2
 

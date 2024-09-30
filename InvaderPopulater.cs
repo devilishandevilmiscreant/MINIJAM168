@@ -64,6 +64,8 @@ public partial class InvaderPopulater : Node2D
 
 		// Add the position to the set of occupied positions
 		occupiedPositions.Add(inv.DesiredPosition);
+
+		inv.CanShoot.Throw(); //Stop the initial barrage as they all spawn in
 	}
 
 	public void Remove(Invader inv)

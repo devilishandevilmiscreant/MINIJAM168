@@ -1,3 +1,19 @@
+<<<<<<< HEAD:test_scene.tscn
+[gd_scene load_steps=23 format=3 uid="uid://d1i7iqdd408cf"]
+
+[ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
+[ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
+[ext_resource type="Script" path="res://Defender.cs" id="3_07nm3"]
+[ext_resource type="Texture2D" uid="uid://bng5cqqnvo8l" path="res://assets/sprites/8bit/8bitbuster.png" id="3_p0npd"]
+[ext_resource type="Texture2D" uid="uid://c2p8ecyjcenik" path="res://assets/sprites/background/spr_background_1.png" id="4_6yyke"]
+[ext_resource type="PackedScene" uid="uid://bdxkdef10esd2" path="res://bunker.tscn" id="4_epvbt"]
+[ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
+[ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
+[ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="7_dq85u"]
+[ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="9_sagnu"]
+[ext_resource type="FontFile" uid="uid://cmjdb4wxo2cua" path="res://assets/fonts/ArcadeRounded-3DM.ttf" id="11_og0hf"]
+[ext_resource type="Script" path="res://ScoreManager.cs" id="12_fhu2j"]
+=======
 [gd_scene load_steps=19 format=3 uid="uid://d1i7iqdd408cf"]
 
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_k0smu"]
@@ -11,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="9_yje1t"]
 [ext_resource type="Script" path="res://MusicPlayer.cs" id="10_sj2jg"]
 [ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="11_yv635"]
+>>>>>>> 30451fe6fba5a8194ca0ab4f60e09c50ee4c953c:game_scene.tscn
 
 [sub_resource type="CSharpScript" id="CSharpScript_2aywe"]
 script/source = "using Godot;
@@ -60,7 +77,25 @@ shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 shader = ExtResource("8_af3qc")
 shader_parameter/text = PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
+<<<<<<< HEAD:test_scene.tscn
+[sub_resource type="LabelSettings" id="LabelSettings_jf5q2"]
+font = ExtResource("11_og0hf")
+font_size = 64
+font_color = Color(1, 0.952941, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_22mbg"]
+font = ExtResource("11_og0hf")
+font_size = 64
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f3tp7"]
+font = ExtResource("11_og0hf")
+font_size = 48
+
+[node name="TestScene" type="Node2D"]
+=======
 [node name="GameScene" type="Node2D"]
+>>>>>>> 30451fe6fba5a8194ca0ab4f60e09c50ee4c953c:game_scene.tscn
 script = SubResource("CSharpScript_2aywe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -91,6 +126,10 @@ script = ExtResource("4_pwgig")
 
 [node name="Area2D" type="Area2D" parent="DefenderPlayer"]
 
+<<<<<<< HEAD:test_scene.tscn
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Area2D"]
+position = Vector2(-0.0499992, 0.200005)
+=======
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DefenderPlayer/Area2D"]
 shape = SubResource("RectangleShape2D_yrpoj")
 
@@ -106,6 +145,7 @@ bunkers = [NodePath("../Bunker"), NodePath("../Bunker2"), NodePath("../Bunker3")
 [node name="Area2D" type="Area2D" parent="DefenderAlly"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DefenderAlly/Area2D"]
+>>>>>>> 30451fe6fba5a8194ca0ab4f60e09c50ee4c953c:game_scene.tscn
 shape = SubResource("RectangleShape2D_yrpoj")
 
 [node name="InvaderPopulater" type="Node2D" parent="."]
@@ -136,4 +176,45 @@ stream = ExtResource("9_yje1t")
 script = ExtResource("10_sj2jg")
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+<<<<<<< HEAD:test_scene.tscn
+stream = ExtResource("9_sagnu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_fhu2j")
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 949.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 566
+text = "INVADINg ALIENS"
+label_settings = SubResource("LabelSettings_jf5q2")
+uppercase = true
+
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 801.0
+offset_right = 868.0
+offset_bottom = 1005.0
+text = "DEFEND EARTH"
+label_settings = SubResource("LabelSettings_22mbg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointsLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 106.0
+offset_right = 152.0
+offset_bottom = 191.0
+label_settings = SubResource("LabelSettings_f3tp7")
+=======
 stream = ExtResource("11_yv635")
+>>>>>>> 30451fe6fba5a8194ca0ab4f60e09c50ee4c953c:game_scene.tscn

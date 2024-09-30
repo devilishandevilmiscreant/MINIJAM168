@@ -25,7 +25,7 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhhy5"]
 
-[node name="Win2" type="Control"]
+[node name="Win" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bovllckdgptc8"]
+[gd_scene load_steps=24 format=3 uid="uid://cqapy8dl1ca2f"]
 
 [ext_resource type="Script" path="res://MusicPlayer.cs" id="1_78xd0"]
 [ext_resource type="Shader" path="res://crtShader.gdshader" id="1_rdbom"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8val6q8asjmh" path="res://bunker.tscn" id="4_epvbt"]
 [ext_resource type="Shader" path="res://bunker.gdshader" id="4_r36f3"]
 [ext_resource type="Script" path="res://InvaderPopulater.cs" id="5_11era"]
+[ext_resource type="Script" path="res://Ally.cs" id="5_xyplx"]
 [ext_resource type="AudioStream" uid="uid://b4uftmvjffunb" path="res://assets/sounds/mus_background.mp3" id="7_dq85u"]
 [ext_resource type="AudioStream" uid="uid://cn3f0pm28f0he" path="res://assets/sounds/snd_impact.wav" id="9_sagnu"]
 [ext_resource type="FontFile" uid="uid://cmjdb4wxo2cua" path="res://assets/fonts/ArcadeRounded-3DM.ttf" id="11_og0hf"]
@@ -108,6 +109,15 @@ script = ExtResource("3_07nm3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Area2D"]
 position = Vector2(-0.0499992, 0.200005)
 shape = SubResource("RectangleShape2D_yrpoj")
+
+[node name="DefenderAlly" type="Sprite2D" parent="." node_paths=PackedStringArray("bunkers")]
+self_modulate = Color(1, 0, 1, 1)
+texture_filter = 1
+position = Vector2(217, 900)
+scale = Vector2(10, 10)
+texture = ExtResource("3_p0npd")
+script = ExtResource("5_xyplx")
+bunkers = [NodePath("../Bunker"), NodePath("../Bunker2"), NodePath("../Bunker3"), NodePath("../Bunker4")]
 
 [node name="InvaderPopulater" type="Node2D" parent="."]
 script = ExtResource("5_11era")

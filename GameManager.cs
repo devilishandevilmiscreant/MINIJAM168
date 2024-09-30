@@ -16,7 +16,7 @@ public partial class GameManager : Node
 	}
 
 	public void Start() {
-		SwapScene("res://game_scene.tscn");
+		SwapScene("res://test_scene.tscn");
 	}
 	public void Win(string reason) {
 		TimePasses = false;
